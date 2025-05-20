@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Container Queries Explained</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f7fa;
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            color: #1a202c;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #2563eb;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .intro {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .intro p {
+            margin-bottom: 1rem;
+        }
+
+        .highlight {
+            background-color: #f0f9ff;
+            border-left: 4px solid #0ea5e9;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Demo section styles */
+        .demo-title {
+            text-align: center;
+            margin: 2rem 0 1rem;
+            font-size: 1.5rem;
+        }
+
+        .layout-demo {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        /* These containers will demonstrate different widths */
+        .small-container, 
+        .medium-container, 
+        .large-container {
+            padding: 20px;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            border: 1px dashed #cbd5e1;
+        }
+
+        .small-container {
+            width: 250px;
+        }
+
+        .medium-container {
+            width: 400px;
+        }
+
+        .large-container {
+            width: 600px;
+        }
+
+        .container-label {
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: #64748b;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .container-width {
+            font-weight: 600;
+            color: #0ea5e9;
+        }
+
+        /* THE PRODUCT CARD - This will change with container queries */
+        .product-card {
+            container-type: inline-size;
+            container-name: card;
+            background-color: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-image {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            flex-shrink: 0;
+            max-height: 220px;
+        }
+
+        .product-content {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1a202c;
+        }
+
+        .product-description {
+            color: #4b5563;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .product-price {
+            font-weight: 700;
+            color: #2563eb;
+        }
+
+        .buy-button {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        /* CONTAINER QUERY MAGIC ✨ */
+        
+        /* When the card container is medium-sized, switch to a horizontal layout */
+        @container card (min-width: 350px) {
+            .product-card {
+                flex-direction: row;
+            }
+            
+            .product-image {
+                width: 40%;
+                max-width: 180px;
+                aspect-ratio: 1;
+                height: auto;
+            }
+            
+            .product-content {
+                width: 60%;
+                flex-grow: 1;
+            }
+        }
+
+        /* When the card container is large-sized, make it more sophisticated */
+        @container card (min-width: 500px) {
+            .product-card {
+                display: grid;
+                grid-template-columns: 220px 1fr;
+            }
+            
+            .product-image {
+                width: 100%;
+                max-width: none;
+                height: 100%;
+                max-height: none;
+                aspect-ratio: auto;
+            }
+            
+            .product-content {
+                width: 100%;
+                padding: 20px;
+            }
+            
+            .product-title {
+                font-size: 1.25rem;
+                margin-bottom: 12px;
+            }
+            
+            .product-description {
+                font-size: 1rem;
+                margin-bottom: 20px;
+            }
+            
+            .buy-button {
+                padding: 8px 16px;
+            }
+        }
+
+        /* Responsive Container Demo */
+        .resizable-demo {
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .resizable-container {
+            margin: 0 auto;
+            width: 70%;
+            max-width: 700px;
+            min-width: 250px;
+            resize: horizontal;
+            overflow: auto;
+            padding: 20px;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            border: 2px dashed #cbd5e1;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+        
+        .resizable-container::after {
+            content: attr(data-width) + "px";
+            position: absolute;
+            bottom: -30px;
+            right: 0;
+            font-size: 14px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .resizable-container::before {
+            content: attr(data-size) " view";
+            position: absolute;
+            bottom: -30px;
+            left: 0;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: capitalize;
+        }
+
+        .resizable-container[data-size="small"]::before {
+            color: #f87171;
+        }
+
+        .resizable-container[data-size="medium"]::before {
+            color: #f59e0b;
+        }
+
+        .resizable-container[data-size="large"]::before {
+            color: #10b981;
+        }
+
+        .resizable-container[data-size="small"] {
+            border-color: #f87171;
+        }
+
+        .resizable-container[data-size="medium"] {
+            border-color: #f59e0b;
+        }
+
+        .resizable-container[data-size="large"] {
+            border-color: #10b981;
+        }
+
+        .resize-instruction {
+            font-style: italic;
+            color: #64748b;
+            margin: 0.5rem 0 2.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* Explanation section */
+        .explanation {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+        }
+
+        .explanation h2 {
+            margin-bottom: 1rem;
+        }
+
+        .explanation p {
+            margin-bottom: 1rem;
+        }
+
+        .code-example {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            font-family: monospace;
+            line-height: 1.4;
+            font-size: 0.9rem;
+        }
+
+        /* Media query for overall page responsiveness */
+        @media (max-width: 768px) {
+            .layout-demo {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .small-container,
+            .medium-container,
+            .large-container {
+                width: 100%;
+                max-width: 600px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="page-title">CSS Container Queries Explained</h1>
+    
+    <div class="container">
+        <div class="intro">
+            <p>Container Queries allow elements to adapt their styling based on the size of their parent container—not just the viewport.</p>
+            <p>This means the <strong>same component</strong> can look completely different based on how much space it has available.</p>
+            
+            <div class="highlight">
+                <p><strong>Media Queries</strong> are based on the <strong>viewport size</strong> (the browser window).</p>
+                <p><strong>Container Queries</strong> are based on the <strong>container size</strong> (the parent element).</p>
+            </div>
+        </div>
+        
+        <h2 class="demo-title">Same Component, Different Containers</h2>
+        <p style="text-align: center; margin-bottom: 20px;">Watch how the exact same product card component adapts to different container widths:</p>
+        
+        <div class="layout-demo">
+            <!-- Small Container -->
+            <div class="small-container">
+                <div class="container-label">
+                    <span>Small Container</span>
+                    <span class="container-width">250px</span>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Wireless headphones" class="product-image">
+                    <div class="product-content">
+                        <div>
+                            <h3 class="product-title">Wireless Headphones</h3>
+                            <p class="product-description">Premium noise-cancelling headphones with 30-hour battery life.</p>
+                        </div>
+                        <div class="product-meta">
+                            <span class="product-price">$129.99</span>
+                            <button class="buy-button">Buy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Medium Container -->
+            <div class="medium-container">
+                <div class="container-label">
+                    <span>Medium Container</span>
+                    <span class="container-width">400px</span>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Wireless headphones" class="product-image">
+                    <div class="product-content">
+                        <div>
+                            <h3 class="product-title">Wireless Headphones</h3>
+                            <p class="product-description">Premium noise-cancelling headphones with 30-hour battery life.</p>
+                        </div>
+                        <div class="product-meta">
+                            <span class="product-price">$129.99</span>
+                            <button class="buy-button">Buy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Large Container -->
+            <div class="large-container">
+                <div class="container-label">
+                    <span>Large Container</span>
+                    <span class="container-width">600px</span>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Wireless headphones" class="product-image">
+                    <div class="product-content">
+                        <div>
+                            <h3 class="product-title">Wireless Headphones</h3>
+                            <p class="product-description">Premium noise-cancelling headphones with 30-hour battery life.</p>
+                        </div>
+                        <div class="product-meta">
+                            <span class="product-price">$129.99</span>
+                            <button class="buy-button">Buy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="resizable-demo">
+            <h2 class="demo-title">Try it yourself!</h2>
+            <p class="resize-instruction">Drag the bottom-right corner to resize this container and watch the card adapt:</p>
+            
+            <div class="resizable-container">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Wireless headphones" class="product-image">
+                    <div class="product-content">
+                        <div>
+                            <h3 class="product-title">Wireless Headphones</h3>
+                            <p class="product-description">Premium noise-cancelling headphones with 30-hour battery life.</p>
+                        </div>
+                        <div class="product-meta">
+                            <span class="product-price">$129.99</span>
+                            <button class="buy-button">Buy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="explanation">
+            <h2>How Container Queries Work</h2>
+            
+            <p>Container queries require two main components:</p>
+            <ol style="margin-left: 1.5rem; margin-bottom: 1rem;">
+                <li>A container element with containment enabled</li>
+                <li>CSS rules that apply when the container matches certain size conditions</li>
+            </ol>
+            
+            <div class="code-example">
+/* 1. First, define the container */
+.product-card {
+  container-type: inline-size;  /* Enable container queries */
+  container-name: card;         /* Optional: Give it a name */
+}
+
+/* 2. Then create styles that apply at different container sizes */
+@container card (min-width: 350px) {
+  .product-card {
+    display: flex;  /* Switch to horizontal layout */
+  }
+  
+  .product-image {
+    width: 40%;     /* Adjust image size */
+  }
+}
+
+/* 3. Add more styles for larger containers */
+@container card (min-width: 500px) {
+  .product-card {
+    display: grid;  /* Switch to grid layout */
+    grid-template-columns: 220px 1fr;
+  }
+  
+  /* Other enhanced styles... */
+}
+            </div>
+            
+            <h3>Why Container Queries Matter</h3>
+            <p>Container queries solve a fundamental problem in responsive design: creating truly reusable components that can adapt to any context they're placed in—not just the overall viewport size.</p>
+            
+            <div class="highlight">
+                <p><strong>Key Benefits:</strong></p>
+                <ul style="margin-left: 1.5rem;">
+                    <li>Components that adapt to their container's size</li>
+                    <li>The same component can have different layouts in different parts of the page</li>
+                    <li>More modular and reusable design components</li>
+                    <li>Better design consistency across different layouts</li>
+                </ul>
+            </div>
+            
+            <p>Container queries are especially useful for:</p>
+            <ul style="margin-left: 1.5rem; margin-bottom: 1rem;">
+                <li>Components that appear in different-sized containers (sidebars, main content, etc.)</li>
+                <li>Card layouts and grid systems</li>
+                <li>Reusable UI components used across different projects</li>
+                <li>Design systems and component libraries</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script>
+        // Track the resizable container's width
+        const resizableContainer = document.querySelector('.resizable-container');
+        const observer = new ResizeObserver(entries => {
+            for (let entry of entries) {
+                const width = Math.round(entry.contentRect.width);
+                entry.target.setAttribute('data-width', width);
+                
+                // Add classes based on width breakpoints to help visualize container query effects
+                if (width < 350) {
+                    entry.target.setAttribute('data-size', 'small');
+                } else if (width < 500) {
+                    entry.target.setAttribute('data-size', 'medium');
+                } else {
+                    entry.target.setAttribute('data-size', 'large');
+                }
+            }
+        });
+        
+        // Start observing the container
+        observer.observe(resizableContainer);
+    </script>
+</body>
+</html> 

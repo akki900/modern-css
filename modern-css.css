@@ -1,0 +1,873 @@
+/* 
+ * Modern CSS Features Demo
+ * A collection of examples showcasing modern CSS features
+ */
+
+/* ==================== GENERAL STYLES ==================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  color: #1e293b;
+  line-height: 1.6;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+header {
+  margin-bottom: 32px;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 16px;
+}
+
+.interactive-notice {
+  background-color: #f0f9ff;
+  border-left: 4px solid #0ea5e9;
+  padding: 16px;
+  margin: 16px 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.interactive-notice p {
+  margin: 0;
+  font-size: 15px;
+}
+
+h1, h2, h3, h4 {
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+h1 {
+  font-size: 40px;
+  color: #2563eb;
+}
+
+h2 {
+  font-size: 28px;
+  margin-top: 24px;
+  color: #2563eb;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+code {
+  font-family: monospace;
+  background-color: #e2e8f0;
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  list-style: none;
+}
+
+.feature-section {
+  margin-bottom: 32px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.description {
+  margin-bottom: 24px;
+}
+
+.description ul {
+  margin-left: 24px;
+  margin-top: 8px;
+}
+
+.example {
+  background-color: #f8fafc;
+  padding: 24px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.code-example {
+  background-color: #1e293b;
+  color: #f1f5f9;
+  padding: 16px;
+  border-radius: 8px;
+  margin-top: 24px;
+  overflow-x: auto;
+  white-space: pre;
+  font-family: monospace;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+footer {
+  margin-top: 32px;
+  text-align: center;
+  color: #64748b;
+  font-size: 14px;
+}
+
+/* ==================== MARGIN INLINE & BLOCK ==================== */
+.margin-container {
+  border: 1px dashed #94a3b8;
+  padding: 24px;
+  background-color: #e0f2fe;
+}
+
+.margin-box, 
+.margin-inline-example, 
+.margin-block-example {
+  background-color: white;
+  padding: 16px;
+  border: 1px solid #cbd5e1;
+}
+
+.margin-inline-example {
+  margin-inline: 32px;
+  margin-top: 16px;
+}
+
+.margin-block-example {
+  margin-block: 32px;
+}
+
+/* ==================== PADDING INLINE & BLOCK ==================== */
+.padding-container {
+  background-color: #fef3c7;
+  padding: 24px;
+}
+
+.padding-box,
+.padding-inline-example,
+.padding-block-example {
+  background-color: white;
+  border: 1px solid #d97706;
+  margin-top: 16px;
+}
+
+.padding-inline-example {
+  padding-inline: 32px;
+}
+
+.padding-block-example {
+  padding-block: 32px;
+}
+
+/* ==================== CSS SUBGRID ==================== */
+.grid-demo {
+  background-color: #f0fdf4;
+  padding: 16px;
+}
+
+.parent-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  border: 2px solid #16a34a;
+  padding: 1rem;
+}
+
+.grid-item {
+  background-color: #dcfce7;
+  padding: 1rem;
+  border: 1px solid #16a34a;
+  text-align: center;
+}
+
+.subgrid-parent {
+  grid-column: span 3;
+  display: grid;
+  grid-template-columns: subgrid;
+  border: 2px dashed #16a34a;
+  padding: 1rem;
+}
+
+.subgrid-item {
+  background-color: #bbf7d0;
+  padding: 1rem;
+  border: 1px solid #16a34a;
+  text-align: center;
+}
+
+/* ==================== CONTAINER QUERIES ==================== */
+.container-demo-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.resize-controls {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.query-container {
+  container-type: inline-size;
+  border: 2px solid #a855f7;
+  padding: 1rem;
+  background-color: #f3e8ff;
+  overflow: hidden;
+  transition: width 0.3s ease;
+}
+
+.card {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.card-image {
+  background-color: #d8b4fe;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+}
+
+.card-content {
+  padding: 1rem;
+}
+
+/* Container query styles */
+@container (min-width: 500px) {
+  .card {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+  }
+  
+  .card-image {
+    height: auto;
+  }
+}
+
+/* ==================== INTERACTIVE CONTROLS ==================== */
+.controls-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background-color: #f8fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.value-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.slider {
+  width: 150px;
+  height: 8px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: #e2e8f0;
+  outline: none;
+  border-radius: 4px;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #2563eb;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #2563eb;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.number-input {
+  width: 50px;
+  padding: 0.25rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+.unit-select {
+  padding: 0.25rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  background-color: white;
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+.color-picker {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.select-control {
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #e2e8f0;
+  background-color: white;
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+.value-display {
+  font-family: monospace;
+  font-size: 0.9rem;
+  background-color: #e2e8f0;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+/* ==================== :HAS() SELECTOR ==================== */
+.has-demo {
+  background-color: #f0f9ff;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.has-parent {
+  margin-top: 1rem;
+  padding: 1.5rem;
+  border: 2px solid #0ea5e9;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+/* Using :has() selector to style parent based on checkbox state */
+.has-parent:has(input:checked) {
+  background-color: var(--has-active-bg, #0ea5e9);
+  color: var(--has-active-text, white);
+  border-color: transparent;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.has-parent label {
+  display: block;
+  margin-top: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.has-parent input[type="checkbox"] {
+  margin-right: 8px;
+  transform: scale(1.2);
+}
+
+/* ==================== SCROLL SNAP ==================== */
+.scroll-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 1rem;
+  padding: 1rem 0;
+  margin: 0 -1rem;
+  padding: 0 1rem;
+}
+
+.snap-item {
+  scroll-snap-align: start;
+  flex: 0 0 300px;
+  height: 200px;
+  background-color: #bfdbfe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  border-radius: 8px;
+  border: 1px solid #3b82f6;
+}
+
+/* ==================== NATIVE NESTING ==================== */
+.nested-parent {
+  background: lightblue;
+  padding: 20px;
+  border-radius: 8px;
+  
+  & h3 {
+    color: darkblue;
+  }
+  
+  & .nested-child {
+    background: white;
+    padding: 10px;
+    margin: 1rem 0;
+  }
+  
+  & .nested-button {
+    background: lightblue;
+    border: 1px solid darkblue;
+    padding: 8px 16px;
+    cursor: pointer;
+    
+    &:hover {
+      background: navy;
+      color: white;
+    }
+  }
+}
+
+/* ==================== @SCOPE SCOPED STYLES ==================== */
+.scope-demo {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.light-theme, .dark-theme {
+  padding: 1.5rem;
+  border-radius: 8px;
+  flex: 1;
+}
+
+.light-theme {
+  background-color: #f1f5f9;
+}
+
+.dark-theme {
+  background-color: #334155;
+}
+
+@scope (.light-theme) {
+  h3 { color: #334155; }
+  p { color: #475569; }
+  button { 
+    background: #e2e8f0; 
+    border: 1px solid #94a3b8;
+    padding: 8px 16px;
+    border-radius: 4px;
+  }
+}
+
+@scope (.dark-theme) {
+  h3 { color: #f1f5f9; }
+  p { color: #cbd5e1; }
+  button { 
+    background: #475569; 
+    color: white;
+    border: 1px solid #94a3b8;
+    padding: 8px 16px;
+    border-radius: 4px;
+  }
+}
+
+/* ==================== ACCENT COLOR ==================== */
+.accent-demo {
+  background-color: #ecfdf5;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.accent-controls {
+  margin-bottom: 1rem;
+}
+
+.accent-examples {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.accent-examples > div {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+}
+
+.accent-examples input, 
+.accent-examples progress {
+  accent-color: #2563eb;
+  margin-right: 0.5rem;
+}
+
+/* ==================== ANCHOR POSITIONING ==================== */
+.anchor-demo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+.tooltip-example, .popover-example {
+  position: relative;
+}
+
+.tooltip-trigger, .popover-trigger {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.tooltip {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 8px;
+  background-color: #1e293b;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  display: none;
+}
+
+.tooltip-trigger:hover + .tooltip {
+  display: block;
+}
+
+.popover {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 8px;
+  background-color: white;
+  border: 1px solid #d1d5db;
+  padding: 1rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  min-width: 200px;
+  display: none;
+}
+
+.popover-trigger:hover + .popover {
+  display: block;
+}
+
+/* Future support for anchor positioning */
+/*
+.tooltip {
+  anchor-name: --tooltip-anchor;
+  position: relative;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: anchor(--tooltip-anchor top);
+  left: anchor(--tooltip-anchor center);
+}
+*/
+
+/* ==================== MEDIA QUERIES LEVEL 5 ==================== */
+.media-demo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.theme-demo, .motion-demo {
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+}
+
+.theme-demo {
+  background-color: white;
+  color: #1e293b;
+}
+
+.animated-element {
+  width: 100px;
+  height: 100px;
+  background-color: #2563eb;
+  margin: 1rem 0;
+  animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.1); }
+}
+
+.note {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin-top: 0.5rem;
+}
+
+/* Media query for dark mode preferences */
+@media (prefers-color-scheme: dark) {
+  .theme-demo {
+    background-color: #1e293b;
+    color: #f1f5f9;
+  }
+}
+
+/* Media query for reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animated-element {
+    animation: none;
+  }
+}
+
+/* ==================== ENV() FUNCTION ==================== */
+.env-demo {
+  background-color: #fff7ed;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.safe-area-example {
+  background-color: #fdba74;
+  color: #7c2d12;
+  padding: 1rem;
+  /* In a real mobile environment, this would use env() */
+  /* padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); */
+  border-radius: 8px;
+}
+
+/* ==================== NTH-CHILD OF SELECTOR ==================== */
+.nth-demo {
+  background-color: #fef2f2;
+  padding: 1.5rem;
+  border-radius: 8px;
+}
+
+.nth-container {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #fca5a5;
+}
+
+.nth-container p:nth-child(odd of p) {
+  color: #dc2626;
+  font-weight: bold;
+}
+
+.demo-description {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+}
+
+/* ==================== :IS() AND :WHERE() SELECTORS ==================== */
+.is-where-demo {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.is-example, .where-example {
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+}
+
+.is-example h3, .where-example h3 {
+  margin-bottom: 1rem;
+}
+
+/* Using :is() - keeps highest specificity */
+:is(.is-example, .is-example .nested) p {
+  color: blue;
+}
+
+/* Using :where() - zero specificity */
+:where(.where-example, .where-example .nested) p {
+  color: green;
+}
+
+/* This overrides :where() but not :is() */
+.nested p {
+  color: purple;
+}
+
+.is-example .important, .where-example .important {
+  font-weight: bold;
+}
+
+.nested {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f8fafc;
+  border-radius: 8px;
+}
+
+/* ==================== @LAYER ==================== */
+.layer-demo {
+  padding: 1.5rem;
+  background-color: #f8fafc;
+  border-radius: 8px;
+}
+
+.layer-box {
+  background-color: white;
+  padding: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+}
+
+/* Define layer order */
+@layer base, components, utilities;
+
+/* Base layer */
+@layer base {
+  .layer-box p {
+    color: navy;
+  }
+  
+  .layer-button {
+    background-color: #cbd5e1;
+    color: #1e293b;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin-top: 1rem;
+    border-radius: 4px;
+  }
+}
+
+/* Components layer */
+@layer components {
+  .layer-box p {
+    color: purple; /* Overrides base */
+  }
+  
+  .layer-button {
+    background-color: #a855f7;
+    color: white;
+  }
+}
+
+/* Utilities layer */
+@layer utilities {
+  .layer-box p {
+    color: crimson; /* Overrides components */
+  }
+  
+  .layer-button {
+    background-color: #f43f5e;
+  }
+}
+
+/* ==================== COLOR-MIX() ==================== */
+.color-mix-demo {
+  padding: 1.5rem;
+  background-color: #f0f9ff;
+  border-radius: 8px;
+}
+
+.color-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.color-result {
+  width: 100%;
+  height: 100px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  margin-bottom: 1rem;
+  background-color: color-mix(in srgb, #ff0000 50%, #0000ff);
+}
+
+.mix-code {
+  font-family: monospace;
+  background-color: #1e293b;
+  color: #f1f5f9;
+  padding: 1rem;
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+/* ==================== :FOCUS-VISIBLE ==================== */
+.focus-demo {
+  padding: 1.5rem;
+  background-color: #eff6ff;
+  border-radius: 8px;
+}
+
+.focus-examples {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.focus-button, .focus-visible-button {
+  padding: 8px 16px;
+  background-color: white;
+  border: 1px solid #93c5fd;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Regular button with always visible focus style */
+.focus-button:focus {
+  outline: 3px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Focus-visible button with focus style only for keyboard navigation */
+.focus-visible-button:focus {
+  outline: none;
+}
+
+.focus-visible-button:focus-visible {
+  outline: 3px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* ==================== RESPONSIVE STYLES ==================== */
+@media (max-width: 768px) {
+  body {
+    padding: 0.5rem;
+  }
+  
+  nav ul {
+    flex-direction: column;
+  }
+  
+  .scope-demo,
+  .is-where-demo,
+  .media-demo {
+    grid-template-columns: 1fr;
+  }
+  
+  .scroll-container {
+    margin: 0;
+    padding: 0;
+  }
+} 
