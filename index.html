@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern CSS Features Examples</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="modern-css.css">
+</head>
+<body>
+    <header>
+        <h1>Modern CSS Features</h1>
+        <div class="interactive-notice">
+            <p>This demo includes interactive controls to help you explore each CSS feature. Use the sliders, color pickers, and dropdowns to adjust properties in real-time.</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#margin-demo">Margin Inline/Block</a></li>
+                <li><a href="#padding-demo">Padding Inline/Block</a></li>
+                <li><a href="#subgrid-demo">CSS Subgrid</a></li>
+                <li><a href="#container-demo">Container Queries</a></li>
+                <li><a href="#has-demo">:has() Selector</a></li>
+                <li><a href="#scroll-demo">Scroll Snap</a></li>
+                <li><a href="#nesting-demo">Native Nesting</a></li>
+                <li><a href="#scope-demo">@scope</a></li>
+                <li><a href="#accent-demo">Accent Color</a></li>
+                <li><a href="#anchor-demo">Anchor Positioning</a></li>
+                <li><a href="#media-demo">Media Queries Level 5</a></li>
+                <li><a href="#env-demo">env()</a></li>
+                <li><a href="#nth-demo">:nth-child(... of S)</a></li>
+                <li><a href="#is-where-demo">:is() and :where()</a></li>
+
+                <li><a href="#color-mix-demo">color-mix()</a></li>
+                <li><a href="#focus-demo">:focus-visible</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Margin Inline/Block Demo -->
+        <section id="margin-demo" class="feature-section">
+            <h2>Margin Inline & Block</h2>
+            <div class="description">
+                <p>Logical properties for margins that adapt to writing mode and text direction:</p>
+                <ul>
+                    <li><code>margin-inline</code>: Sets margin on the inline axis (left/right in horizontal languages)</li>
+                    <li><code>margin-block</code>: Sets margin on the block axis (top/bottom in horizontal languages)</li>
+                </ul>
+            </div>
+            <div class="example">
+                <div class="controls-container">
+                    <div class="control-group">
+                        <label for="margin-inline-control">margin-inline:</label>
+                        <div class="value-control">
+                            <input type="range" id="margin-inline-control" min="0" max="100" step="1" value="32" class="slider">
+                            <input type="number" id="margin-inline-number" min="0" max="100" value="32" class="number-input">
+                            <select id="margin-inline-unit" class="unit-select">
+                                <option value="px" selected>px</option>
+                                <option value="rem">rem</option>
+                                <option value="%">%</option>
+                                <option value="em">em</option>
+                                <option value="vw">vw</option>
+                                <option value="vh">vh</option>
+                            </select>
+                        </div>
+                        <span class="value-display" id="margin-inline-value">32px</span>
+                    </div>
+                    <div class="control-group">
+                        <label for="margin-block-control">margin-block:</label>
+                        <div class="value-control">
+                            <input type="range" id="margin-block-control" min="0" max="100" step="1" value="32" class="slider">
+                            <input type="number" id="margin-block-number" min="0" max="100" value="32" class="number-input">
+                            <select id="margin-block-unit" class="unit-select">
+                                <option value="px" selected>px</option>
+                                <option value="rem">rem</option>
+                                <option value="%">%</option>
+                                <option value="em">em</option>
+                                <option value="vw">vw</option>
+                                <option value="vh">vh</option>
+                            </select>
+                        </div>
+                        <span class="value-display" id="margin-block-value">32px</span>
+                    </div>
+                </div>
+                <div class="margin-container">
+                    <div class="margin-box">Base element</div>
+                    <div class="margin-inline-example">margin-inline: 32px</div>
+                    <div class="margin-block-example">margin-block: 32px</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Padding Inline/Block Demo -->
+        <section id="padding-demo" class="feature-section">
+            <h2>Padding Inline & Block</h2>
+            <div class="description">
+                <p>Logical properties for padding that adapt to writing mode and text direction:</p>
+                <ul>
+                    <li><code>padding-inline</code>: Sets padding on the inline axis (left/right in horizontal languages)</li>
+                    <li><code>padding-block</code>: Sets padding on the block axis (top/bottom in horizontal languages)</li>
+                </ul>
+            </div>
+            <div class="example">
+                <div class="controls-container">
+                    <div class="control-group">
+                        <label for="padding-inline-control">padding-inline:</label>
+                        <div class="value-control">
+                            <input type="range" id="padding-inline-control" min="0" max="100" step="1" value="32" class="slider">
+                            <input type="number" id="padding-inline-number" min="0" max="100" value="32" class="number-input">
+                            <select id="padding-inline-unit" class="unit-select">
+                                <option value="px" selected>px</option>
+                                <option value="rem">rem</option>
+                                <option value="%">%</option>
+                                <option value="em">em</option>
+                                <option value="vw">vw</option>
+                                <option value="vh">vh</option>
+                            </select>
+                        </div>
+                        <span class="value-display" id="padding-inline-value">32px</span>
+                    </div>
+                    <div class="control-group">
+                        <label for="padding-block-control">padding-block:</label>
+                        <div class="value-control">
+                            <input type="range" id="padding-block-control" min="0" max="100" step="1" value="32" class="slider">
+                            <input type="number" id="padding-block-number" min="0" max="100" value="32" class="number-input">
+                            <select id="padding-block-unit" class="unit-select">
+                                <option value="px" selected>px</option>
+                                <option value="rem">rem</option>
+                                <option value="%">%</option>
+                                <option value="em">em</option>
+                                <option value="vw">vw</option>
+                                <option value="vh">vh</option>
+                            </select>
+                        </div>
+                        <span class="value-display" id="padding-block-value">32px</span>
+                    </div>
+                </div>
+                <div class="padding-container">
+                    <div class="padding-box">Base element</div>
+                    <div class="padding-inline-example">padding-inline: 32px</div>
+                    <div class="padding-block-example">padding-block: 32px</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CSS Subgrid Demo -->
+        <section id="subgrid-demo" class="feature-section">
+            <h2>CSS Subgrid</h2>
+            <div class="description">
+                <p>Allows a grid item that is also a grid container to inherit grid tracks from its parent:</p>
+                <ul>
+                    <li><code>grid-template-columns: subgrid</code>: Inherit parent's column tracks</li>
+                    <li><code>grid-template-rows: subgrid</code>: Inherit parent's row tracks</li>
+                </ul>
+            </div>
+            <div class="example">
+                <div class="controls-container">
+                    <div class="control-group">
+                        <label for="grid-gap-control">Grid Gap:</label>
+                        <div class="value-control">
+                            <input type="range" id="grid-gap-control" min="0" max="50" step="1" value="16" class="slider">
+                            <input type="number" id="grid-gap-number" min="0" max="50" value="16" class="number-input">
+                            <select id="grid-gap-unit" class="unit-select">
+                                <option value="px" selected>px</option>
+                                <option value="rem">rem</option>
+                                <option value="%">%</option>
+                                <option value="em">em</option>
+                            </select>
+                        </div>
+                        <span class="value-display" id="grid-gap-value">16px</span>
+                    </div>
+                    <div class="control-group">
+                        <label for="grid-columns-control">Grid Columns:</label>
+                        <input type="range" id="grid-columns-control" min="2" max="5" step="1" value="3" class="slider">
+                        <span class="value-display" id="grid-columns-value">3</span>
+                    </div>
+                </div>
+                <div class="grid-demo">
+                    <div class="parent-grid">
+                        <div class="grid-item">Parent Col 1</div>
+                        <div class="grid-item">Parent Col 2</div>
+                        <div class="grid-item">Parent Col 3</div>
+                        <div class="subgrid-parent">
+                            <div class="subgrid-item">Subgrid 1</div>
+                            <div class="subgrid-item">Subgrid 2</div>
+                            <div class="subgrid-item">Subgrid 3</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Container Queries Demo -->
+        <section id="container-demo" class="feature-section">
+            <h2>Container Queries</h2>
+            <div class="description">
+                <p>Style elements based on their container's size instead of just the viewport:</p>
+                <ul>
+                    <li><code>container-type</code>: Sets the type of containment</li>
+                    <li><code>@container</code>: Queries the container's size</li>
+                </ul>
+            </div>
+            <div class="example">
+                <div class="resize-controls">
+                    <label>Resize container: <input type="range" min="200" max="800" value="400" id="container-resizer"></label>
+                    <span id="container-width">400px</span>
+                </div>
+                <div class="container-demo-wrapper">
+                    <div class="query-container" style="width: 400px;">
+                        <div class="card">
+                            <div class="card-image">📷</div>
+                            <div class="card-content">
+                                <h3>Container Queries Demo</h3>
+                                <p>This card changes layout based on its container width, not the viewport.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- :has() Selector Demo -->
+        <section id="has-demo" class="feature-section">
+            <h2>:has() Selector</h2>
+            <div class="description">
+                <p>The <code>:has()</code> selector is a powerful "parent selector" that lets you style an element based on what it contains:</p>
+                <ul>
+                    <li><code>parent:has(child)</code>: Selects a parent element only if it contains the specified child element</li>
+                    <li><code>parent:has(child:checked)</code>: Selects a parent when a child element is in a specific state</li>
+                    <li><code>element:has(+ sibling)</code>: Selects an element that is followed by a specific sibling</li>
+                </ul>
+            </div>
+            <div class="example">
+                <div class="has-demo">
+                    <div class="controls-container">
+                        <div class="control-group">
+                            <label for="has-background-control">Parent Background When Active:</label>
+                            <input type="color" id="has-background-control" value="#0ea5e9" class="color-picker">
+                        </div>
+                        <div class="control-group">
+                            <label for="has-text-control">Parent Text When Active:</label>
+                            <input type="color" id="has-text-control" value="#ffffff" class="color-picker">
+                        </div>
+                    </div>
+                    <p>The :has() selector allows us to style a parent element based on its child elements. In this example, the parent div will change its background and text color when the checkbox inside it is checked.</p>
+                    <div class="has-parent">
+                        <p>This parent container changes styles when the checkbox below is checked.</p>
+                        <p>The CSS selector used is: <code>.has-parent:has(input:checked)</code></p>
+                        <label>
+                            <input type="checkbox" id="toggle-checkbox">
+                            Toggle me to change the parent's styles
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Scroll Snap Demo -->
+        <section id="scroll-demo" class="feature-section">
+            <h2>Scroll Snap</h2>
+            <div class="description">
+                <p>Creates smooth, controlled scroll experiences:</p>
+                <ul>
+                    <li><code>scroll-snap-type</code>: How strictly snap points are enforced</li>
+                    <li><code>scroll-snap-align</code>: Which part of element should snap</li>
+                </ul>
+            </div>
+            <div class="example">
+                <div class="controls-container">
+                    <div class="control-group">
+                        <label for="snap-type-control">Snap Type:</label>
+                        <select id="snap-type-control" class="select-control">
+                            <option value="mandatory">mandatory</option>
+                            <option value="proximity">proximity</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label for="snap-align-control">Snap Align:</label>
+                        <select id="snap-align-control" class="select-control">
+                            <option value="start">start</option>
+                            <option value="center">center</option>
+                            <option value="end">end</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="scroll-container">
+                    <div class="snap-item">Slide 1</div>
+                    <div class="snap-item">Slide 2</div>
+                    <div class="snap-item">Slide 3</div>
+                    <div class="snap-item">Slide 4</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Native Nesting Demo -->
+        <section id="nesting-demo" class="feature-section">
+            <h2>Native Nesting</h2>
+            <div class="description">
+                <p>Write CSS like SASS/SCSS without preprocessors:</p>
+                <ul>
+                    <li>Nest selectors for better organization</li>
+                    <li>Use <code>&</code> for referencing parent selectors (optional)</li>
+                    <li>Direct descendant selectors can be nested without the <code>&</code> symbol</li>
+                </ul>
+            </div>
+            <div class="example">
+                <div class="tabs">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="with-ampersand">With &amp;</button>
+                        <button class="tab-btn" data-tab="without-ampersand">Without &amp;</button>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="with-ampersand">
+                            <div class="nesting-example">
+                                <div class="nested-parent">
+                                    <h3>Parent Element</h3>
+                                    <div class="nested-child">Child Element</div>
+                                    <button class="nested-button">Hover Me</button>
+                                </div>
+                            </div>
+                            <pre class="code-example">
+.nested-parent {
+    background: lightblue;
+    padding: 20px;
+    
+    & h3 {
+        color: darkblue;
+    }
+    
+    & .nested-child {
+        background: white;
+        padding: 10px;
+    }
+    
+    & .nested-button {
+        &:hover {
+            background: navy;
+            color: white;
+        }
+    }
+}</pre>
+                        </div>
+                        <div class="tab-pane" id="without-ampersand">
+                            <div class="nesting-example">
+                                <div class="direct-nested-parent">
+                                    <h3>Parent Element</h3>
+                                    <div class="direct-nested-child">Child Element</div>
+                                    <button class="direct-nested-button">Hover Me</button>
+                                    <ul class="direct-nested-list">
+                                        <li>Item 1</li>
+                                        <li class="active">Item 2 (Active)</li>
+                                        <li>Item 3</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <pre class="code-example">
+.direct-nested-parent {
+    background: #e0f7fa;
+    padding: 20px;
+    border-radius: 8px;
+    
+    /* Direct nesting without & for descendant selectors */
+    h3 {
+        color: #006064;
+        margin-bottom: 12px;
+    }
+    
+    .direct-nested-child {
+        background: white;
+        padding: 10px;
+        border: 1px solid #4dd0e1;
+        border-radius: 4px;
+    }
+    
+    /* Nested selectors can be multiple levels deep */
+    .direct-nested-list {
+        margin-top: 16px;
+        padding-left: 20px;
+        
+        li {
+            padding: 4px 0;
+            color: #00838f;
+            
+            /* You still need & for pseudo-classes and modifiers */
+            &.active {
+                font-weight: bold;
+                color: #006064;
+            }
+        }
+    }
+    
+    /* Need & for interactive states */
+    .direct-nested-button {
+        background: #4dd0e1;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        margin-top: 12px;
+        cursor: pointer;
+        
+        &:hover {
+            background: #00838f;
+            color: white;
+        }
+    }
+}</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- @scope Demo -->
+        <section id="scope-demo" class="feature-section">
+            <h2>@scope — Scoped Styles</h2>
+            <div class="description">
+                <p>Limits the reach of selectors to specific DOM subtrees:</p>
+                <ul>
+                    <li><code>@scope</code>: Defines a scope for style rules</li>
+                    <li>Prevents unintended style leakage between components</li>
+                </ul>
+            </div>
+            <div class="example">
+                <div class="controls-container">
+                    <div class="control-group">
+                        <label for="light-theme-bg">Light Theme Background:</label>
+                        <input type="color" id="light-theme-bg" value="#f1f5f9" class="color-picker">
+                    </div>
+                    <div class="control-group">
+                        <label for="dark-theme-bg">Dark Theme Background:</label>
+                        <input type="color" id="dark-theme-bg" value="#334155" class="color-picker">
+                    </div>
+                </div>
+                <div class="scope-demo">
+                    <div class="light-theme">
+                        <h3>Light Theme Section</h3>
+                        <p>These paragraphs should be styled based on theme scope.</p>
+                        <button>Light Button</button>
+                    </div>
+                    <div class="dark-theme">
+                        <h3>Dark Theme Section</h3>
+                        <p>These paragraphs should be styled based on theme scope.</p>
+                        <button>Dark Button</button>
+                    </div>
+                </div>
+                <pre class="code-example">
+@scope (.light-theme) {
+    p { color: black; }
+    button { background: lightgray; }
+}
+
+@scope (.dark-theme) {
+    p { color: white; }
+    button { background: darkgray; }
+}</pre>
+            </div>
+        </section>
+
+        <!-- Accent Color Demo -->
+        <section id="accent-demo" class="feature-section">
+            <h2>Accent Color</h2>
+            <div class="description">
+                <p>Customize the color of form controls with a single property:</p>
+                <ul>
+                    <li><code>accent-color</code>: Sets the accent color for inputs</li>
+                    <li>Works with checkboxes, radio buttons, range sliders, and progress bars</li>
+                </ul>
+            </div>
+            <div class="example">
+                <div class="accent-demo">
+                    <div class="accent-controls">
+                        <label>Select accent color: <input type="color" id="accent-picker" value="#2563eb"></label>
+                    </div>
+                    <div class="accent-examples">
+                        <div>
+                            <input type="checkbox" checked>
+                            <label>Checkbox</label>
+                        </div>
+                        <div>
+                            <input type="radio" name="radio-group" checked>
+                            <label>Radio Button</label>
+                        </div>
+                        <div>
+                            <input type="range" value="75">
+                            <label>Range Slider</label>
+                        </div>
+                        <div>
+                            <progress value="75" max="100"></progress>
+                            <label>Progress Bar</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Anchor Positioning Demo -->
+        <section id="anchor-demo" class="feature-section">
+            <h2>Anchor Positioning</h2>
+            <div class="description">
+                <p>Position elements in relation to other elements:</p>
+                <ul>
+                    <li><code>anchor-name</code>: Names an anchor element</li>
+                    <li><code>anchor()</code>: References the anchor from positioned elements</li>
+                </ul>
+            </div>
+            <div class="example">
+                <div class="anchor-demo">
+                    <div class="tooltip-example">
+                        <button class="tooltip-trigger">Hover for tooltip</button>
+                        <div class="tooltip">This is a tooltip positioned with anchor()</div>
+                    </div>
+                    <div class="popover-example">
+                        <button class="popover-trigger">Click for popover</button>
+                        <div class="popover">
+                            <h4>Popover Title</h4>
+                            <p>This is popover content positioned with anchor()</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Media Queries Level 5 Demo -->
+        <section id="media-demo" class="feature-section">
+            <h2>Media Queries Level 5</h2>
+            <div class="description">
+                <p>Advanced media queries with broader range of user preferences and device capabilities:</p>
+                <ul>
+                    <li><code>prefers-color-scheme</code>: User's light/dark preference</li>
+                    <li><code>prefers-reduced-motion</code>: Motion sensitivity preference</li>
+                    <li><code>prefers-contrast</code>: Contrast preference</li>
+                    <li><code>dynamic-range</code>: HDR capability detection</li>
+                    <li><code>scripting</code>: JavaScript enabled/disabled</li>
+                    <li><code>display-mode</code>: Standalone, fullscreen, minimal-ui detection</li>
+                    <li><code>forced-colors</code>: High contrast mode detection</li>
+                    <li><code>width/height</code>: Now supports range syntax with <code>&lt; &gt; = &lt;= &gt;=</code></li>
+                </ul>
+            </div>
+            <div class="example">
+                <div class="media-demo-controls">
+                    <button id="toggle-simulator" class="media-control-btn">Toggle feature simulator</button>
+                    <div id="media-simulator" class="media-simulator">
+                        <p class="simulator-title">Media Feature Simulator</p>
+                        <div class="simulator-control">
+                            <label for="sim-color-scheme">Color Scheme:</label>
+                            <select id="sim-color-scheme">
+                                <option value="system">System Default</option>
+                                <option value="light">Light</option>
+                                <option value="dark">Dark</option>
+                            </select>
+                        </div>
+                        <div class="simulator-control">
+                            <label for="sim-reduced-motion">Reduced Motion:</label>
+                            <select id="sim-reduced-motion">
+                                <option value="system">System Default</option>
+                                <option value="no-preference">No Preference</option>
+                                <option value="reduce">Reduce</option>
+                            </select>
+                        </div>
+                        <div class="simulator-control">
+                            <label for="sim-contrast">Contrast:</label>
+                            <select id="sim-contrast">
+                                <option value="system">System Default</option>
+                                <option value="no-preference">No Preference</option>
+                                <option value="more">More</option>
+                                <option value="less">Less</option>
+                            </select>
+                        </div>
+                        <p class="simulator-note">Note: This simulates media features for demo purposes only and doesn't change your actual system preferences.</p>
+                    </div>
+                </div>
+                
+                <div class="media-demo">
+                    <div class="theme-demo">
+                        <h3>Color Scheme</h3>
+                        <div class="media-box color-scheme-box">
+                            <div class="theme-toggle-container">
+                                <div class="theme-icon light-icon">☀️</div>
+                                <div class="theme-content">
+                                    <h4>Adaptive Color Scheme</h4>
+                                    <p>Content adapts to your system's color scheme preference.</p>
+                                    <div class="theme-card">
+                                        <div class="card-header">Example Card</div>
+                                        <div class="card-body">UI elements dynamically adjust colors, contrast, and shadows based on light/dark mode.</div>
+                                    </div>
+                                </div>
+                                <div class="theme-icon dark-icon">🌙</div>
+                            </div>
+                            <p class="note">Uses: <code>@media (prefers-color-scheme: dark) { ... }</code></p>
+                            <span class="status-indicator">Current: <span id="scheme-status">Light</span></span>
+                        </div>
+                    </div>
+                    
+                    <div class="motion-demo">
+                        <h3>Motion Preference</h3>
+                        <div class="media-box motion-box">
+                            <div class="motion-container">
+                                <div class="animated-element carousel">
+                                    <div class="carousel-item">Slide 1</div>
+                                    <div class="carousel-item">Slide 2</div>
+                                    <div class="carousel-item">Slide 3</div>
+                                </div>
+                                <div class="motion-controls">
+                                    <button class="motion-btn" id="play-animation">Play</button>
+                                    <button class="motion-btn" id="pause-animation">Pause</button>
+                                </div>
+                            </div>
+                            <p class="note">Uses: <code>@media (prefers-reduced-motion: reduce) { ... }</code></p>
+                            <span class="status-indicator">Current: <span id="motion-status">Animations Enabled</span></span>
+                        </div>
+                    </div>
+                    
+                    <div class="contrast-demo">
+                        <h3>Contrast Preference</h3>
+                        <div class="media-box contrast-box">
+                            <div class="contrast-examples">
+                                <div class="contrast-example">
+                                    <h4>Standard Text</h4>
+                                    <p class="low-contrast-text">Low contrast text example</p>
+                                    <p class="standard-contrast-text">Standard contrast text</p>
+                                    <p class="high-contrast-text">High contrast text example</p>
+                                </div>
+                                <div class="contrast-example">
+                                    <h4>UI Elements</h4>
+                                    <button class="contrast-btn">Standard Button</button>
+                                    <div class="contrast-switch">
+                                        <input type="checkbox" id="contrast-toggle" checked>
+                                        <label for="contrast-toggle"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="note">Uses: <code>@media (prefers-contrast: more) { ... }</code></p>
+                            <span class="status-indicator">Current: <span id="contrast-status">Normal Contrast</span></span>
+                        </div>
+                    </div>
+                    
+                    <div class="dynamic-range-demo">
+                        <h3>Dynamic Range</h3>
+                        <div class="media-box dynamic-range-box">
+                            <div class="hdr-demo">
+                                <div class="hdr-image-container">
+                                    <div class="hdr-image standard">Standard Dynamic Range</div>
+                                    <div class="hdr-image high">High Dynamic Range</div>
+                                </div>
+                                <p>This example shows different visual treatments based on your display's HDR capability.</p>
+                            </div>
+                            <p class="note">Uses: <code>@media (dynamic-range: high) { ... }</code></p>
+                            <span class="status-indicator">Current: <span id="dynamic-range-status">Standard</span></span>
+                        </div>
+                    </div>
+                    
+                    <div class="range-demo">
+                        <h3>Modern Range Syntax</h3>
+                        <div class="media-box range-box">
+                            <div class="range-visualization">
+                                <div class="range-ruler">
+                                    <span class="marker" style="left: 0%">0px</span>
+                                    <span class="marker" style="left: 25%">400px</span>
+                                    <span class="marker" style="left: 50%">800px</span>
+                                    <span class="marker" style="left: 75%">1200px</span>
+                                    <span class="marker" style="left: 100%">1600px</span>
+                                    <div class="current-width-marker" id="width-marker"></div>
+                                </div>
+                                <div class="range-indicators">
+                                    <div class="range-indicator small">
+                                        <code>width < 400px</code>
+                                        <span class="indicator-status" id="small-status">Inactive</span>
+                                    </div>
+                                    <div class="range-indicator medium">
+                                        <code>width >= 400px and width <= 800px</code>
+                                        <span class="indicator-status" id="medium-status">Inactive</span>
+                                    </div>
+                                    <div class="range-indicator large">
+                                        <code>width > 800px</code>
+                                        <span class="indicator-status" id="large-status">Inactive</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="note">Uses new logical operators: <code>< > <= >= =</code></p>
+                            <span class="status-indicator">Current viewport width: <span id="width-status">Calculating...</span></span>
+                        </div>
+                    </div>
+                    
+                    <div class="scripting-demo">
+                        <h3>Scripting Support</h3>
+                        <div class="media-box scripting-box">
+                            <div class="script-status-container">
+                                <div class="script-status enabled">
+                                    <h4>JavaScript Enabled</h4>
+                                    <p class="with-script">This content is visible when JavaScript is available.</p>
+                                    <div class="interactive-element">
+                                        <button id="interactive-btn">Click Me</button>
+                                        <span id="click-counter">0 clicks</span>
+                                    </div>
+                                </div>
+                                <div class="script-status disabled">
+                                    <h4>JavaScript Disabled</h4>
+                                    <p class="no-script">This would be visible if JavaScript were disabled.</p>
+                                    <div class="fallback-content">
+                                        <a href="#" class="fallback-link">Fallback Action</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="note">Uses: <code>@media (scripting: enabled) { ... }</code></p>
+                            <span class="status-indicator">Current: <span id="script-status">Checking...</span></span>
+                        </div>
+                    </div>
+                    
+                    <div class="display-demo">
+                        <h3>Display Mode</h3>
+                        <div class="media-box display-box">
+                            <div class="display-modes">
+                                <div class="display-mode-example browser">
+                                    <div class="browser-chrome">
+                                        <div class="browser-controls">
+                                            <span class="control"></span>
+                                            <span class="control"></span>
+                                            <span class="control"></span>
+                                        </div>
+                                        <div class="browser-address">example.com</div>
+                                    </div>
+                                    <div class="browser-content">Browser Mode</div>
+                                </div>
+                                <div class="display-mode-example standalone">
+                                    <div class="standalone-header">
+                                        <div class="app-title">Web App</div>
+                                    </div>
+                                    <div class="standalone-content">Standalone Mode (PWA)</div>
+                                </div>
+                            </div>
+                            <p class="note">Uses: <code>@media (display-mode: browser|standalone|fullscreen) { ... }</code></p>
+                            <span class="status-indicator">Current: <span id="display-status">Calculating...</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- env() Demo -->
+        <section id="env-demo" class="feature-section">
+            <h2>env()</h2>
+            <div class="description">
+                <p>Access environment variables provided by the user agent:</p>
+                <ul>
+                    <li><code>env(safe-area-inset-*)</code>: Safe areas for notches/UI elements</li>
+                    <li><code>env(keyboard-inset-*)</code>: Virtual keyboard areas</li>
+                </ul>
+            </div>
+            <div class="example">
+                <div class="env-demo">
+                    <div class="safe-area-example">
+                        <p>This element respects safe areas using:</p>
+                        <code>padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);</code>
+                        <p>Most relevant for mobile devices with notches.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- :nth-child Demo -->
+        <section id="nth-demo" class="feature-section">
+            <h2>:nth-child(... of S)</h2>
+            <div class="description">
+                <p>Enhanced nth-child selector that filters by a selector:</p>
+                <ul>
+                    <li><code>:nth-child(An+B of S)</code>: Selects elements matching pattern An+B but only among elements matching selector S</li>
+                </ul>
+            </div>
+            <div class="example">
+                <div class="controls-container">
+                    <div class="control-group">
+                        <label for="nth-pattern-control">Pattern:</label>
+                        <select id="nth-pattern-control" class="select-control">
+                            <option value="odd">odd</option>
+                            <option value="even">even</option>
+                            <option value="2n+1">2n+1</option>
+                            <option value="3n">3n</option>
+                            <option value="3n+1">3n+1</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label for="nth-color-control">Highlight Color:</label>
+                        <input type="color" id="nth-color-control" value="#dc2626" class="color-picker">
+                    </div>
+                </div>
+                <div class="nth-demo">
+                    <div class="nth-container">
+                        <p>Paragraph 1</p>
+                        <span>Span 1</span>
+                        <p>Paragraph 2</p>
+                        <span>Span 2</span>
+                        <p>Paragraph 3</p>
+                        <span>Span 3</span>
+                        <p>Paragraph 4</p>
+                    </div>
+                </div>
+                <p class="demo-description">In this example, <code id="nth-pattern-display">:nth-child(odd of p)</code> selects only matching paragraphs, ignoring spans.</p>
+            </div>
+        </section>
+
+        <!-- :is() and :where() Demo -->
+        <section id="is-where-demo" class="feature-section">
+            <h2>CSS :is() and :where()</h2>
+            <div class="description">
+                <p>Simplify complex selectors and handle specificity:</p>
+                <ul>
+                    <li><code>:is()</code>: Group selectors, keeps highest specificity</li>
+                    <li><code>:where()</code>: Group selectors with zero specificity</li>
+                </ul>
+            </div>
+            <div class="example">
+                <div class="is-where-demo">
+                    <div class="is-example">
+                        <h3>:is() Example</h3>
+                        <p>Regular paragraph</p>
+                        <p class="important">Important paragraph</p>
+                        <div class="nested">
+                            <p>Nested paragraph</p>
+                            <p class="important">Nested important paragraph</p>
+                        </div>
+                    </div>
+                    <div class="where-example">
+                        <h3>:where() Example</h3>
+                        <p>Regular paragraph</p>
+                        <p class="important">Important paragraph</p>
+                        <div class="nested">
+                            <p>Nested paragraph</p>
+                            <p class="important">Nested important paragraph</p>
+                        </div>
+                    </div>
+                </div>
+                <pre class="code-example">
+/* Using :is() - keeps highest specificity */
+:is(.is-example, .is-example .nested) p {
+    color: blue;
+}
+
+/* Using :where() - zero specificity */
+:where(.where-example, .where-example .nested) p {
+    color: green;
+}
+
+/* This overrides :where() but not :is() */
+.nested p {
+    color: purple;
+}</pre>
+            </div>
+        </section>
+
+        <!-- color-mix() Demo -->
+        <section id="color-mix-demo" class="feature-section">
+            <h2>color-mix()</h2>
+            <div class="description">
+                <p>Mix colors programmatically in different color spaces:</p>
+                <ul>
+                    <li><code>color-mix(in colorspace, color1 percentage, color2)</code></li>
+                    <li>Supports sRGB, LRGB, LAB, LCH, and other color spaces</li>
+                </ul>
+            </div>
+            <div class="example">
+                <div class="color-mix-demo">
+                    <div class="color-controls">
+                        <div>
+                            <label>Color 1: <input type="color" id="color1" value="#ff0000"></label>
+                            <span id="color1-text">#ff0000</span>
+                        </div>
+                        <div>
+                            <label>Color 2: <input type="color" id="color2" value="#0000ff"></label>
+                            <span id="color2-text">#0000ff</span>
+                        </div>
+                        <div>
+                            <label>Mix Percentage: <input type="range" id="mix-percent" min="0" max="100" value="50"></label>
+                            <span id="percent-text">50%</span>
+                        </div>
+                        <div>
+                            <label>Color Space:
+                                <select id="color-space">
+                                    <option value="srgb">sRGB</option>
+                                    <option value="hsl">HSL</option>
+                                    <option value="lab">LAB</option>
+                                    <option value="lch">LCH</option>
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="color-result" id="color-result"></div>
+                    <div class="mix-code" id="mix-code">color-mix(in srgb, #ff0000 50%, #0000ff)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- :focus-visible Demo -->
+        <section id="focus-demo" class="feature-section">
+            <h2>:focus-visible</h2>
+            <div class="description">
+                <p>Improve focus styles for better keyboard accessibility:</p>
+                <ul>
+                    <li><code>:focus-visible</code>: Focus styles only when navigating with keyboard</li>
+                    <li>Better user experience than <code>:focus</code> which shows for mouse clicks too</li>
+                </ul>
+            </div>
+            <div class="example">
+                <div class="focus-demo">
+                    <p>Click or tab to these elements to see the difference:</p>
+                    <div class="focus-examples">
+                        <button class="focus-button">Regular focus</button>
+                        <button class="focus-visible-button">Focus-visible</button>
+                    </div>
+                    <p class="note">The first button shows focus ring on both click and keyboard. The second only shows it when navigating with keyboard.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Examples of Modern CSS Features - Created for educational purposes</p>
+    </footer>
+
+    <script>
+        // Native Nesting Tabs
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            
+            if (tabButtons.length > 0) {
+                tabButtons.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        // Remove active class from all buttons and panes
+                        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                        document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+                        
+                        // Add active class to clicked button
+                        this.classList.add('active');
+                        
+                        // Activate corresponding pane
+                        const tabId = this.getAttribute('data-tab');
+                        document.getElementById(tabId).classList.add('active');
+                    });
+                });
+            }
+        });
+        
+        // Container queries demo
+        const containerResizer = document.getElementById('container-resizer');
+        const containerWidth = document.getElementById('container-width');
+        const queryContainer = document.querySelector('.query-container');
+        
+        if (containerResizer) {
+            containerResizer.addEventListener('input', () => {
+                const width = containerResizer.value;
+                queryContainer.style.width = `${width}px`;
+                containerWidth.textContent = `${width}px`;
+            });
+        }
+
+        // Margin controls
+        const marginInlineControl = document.getElementById('margin-inline-control');
+        const marginBlockControl = document.getElementById('margin-block-control');
+        const marginInlineNumber = document.getElementById('margin-inline-number');
+        const marginBlockNumber = document.getElementById('margin-block-number');
+        const marginInlineUnit = document.getElementById('margin-inline-unit');
+        const marginBlockUnit = document.getElementById('margin-block-unit');
+        const marginInlineValue = document.getElementById('margin-inline-value');
+        const marginBlockValue = document.getElementById('margin-block-value');
+        const marginInlineExample = document.querySelector('.margin-inline-example');
+        const marginBlockExample = document.querySelector('.margin-block-example');
+
+        function updateMarginInline() {
+            const value = marginInlineNumber.value;
+            const unit = marginInlineUnit.value;
+            const formattedValue = `${value}${unit}`;
+            marginInlineExample.style.marginInline = formattedValue;
+            marginInlineValue.textContent = formattedValue;
+            marginInlineExample.textContent = `margin-inline: ${formattedValue}`;
+        }
+
+        function updateMarginBlock() {
+            const value = marginBlockNumber.value;
+            const unit = marginBlockUnit.value;
+            const formattedValue = `${value}${unit}`;
+            marginBlockExample.style.marginBlock = formattedValue;
+            marginBlockValue.textContent = formattedValue;
+            marginBlockExample.textContent = `margin-block: ${formattedValue}`;
+        }
+
+        if (marginInlineControl && marginBlockControl) {
+            // Margin Inline event listeners
+            marginInlineControl.addEventListener('input', () => {
+                marginInlineNumber.value = marginInlineControl.value;
+                updateMarginInline();
+            });
+
+            marginInlineNumber.addEventListener('input', () => {
+                marginInlineControl.value = Math.min(100, Math.max(0, marginInlineNumber.value));
+                updateMarginInline();
+            });
+
+            marginInlineUnit.addEventListener('change', updateMarginInline);
+
+            // Margin Block event listeners
+            marginBlockControl.addEventListener('input', () => {
+                marginBlockNumber.value = marginBlockControl.value;
+                updateMarginBlock();
+            });
+
+            marginBlockNumber.addEventListener('input', () => {
+                marginBlockControl.value = Math.min(100, Math.max(0, marginBlockNumber.value));
+                updateMarginBlock();
+            });
+
+            marginBlockUnit.addEventListener('change', updateMarginBlock);
+
+            // Initialize
+            updateMarginInline();
+            updateMarginBlock();
+        }
+
+        // Padding controls
+        const paddingInlineControl = document.getElementById('padding-inline-control');
+        const paddingBlockControl = document.getElementById('padding-block-control');
+        const paddingInlineNumber = document.getElementById('padding-inline-number');
+        const paddingBlockNumber = document.getElementById('padding-block-number');
+        const paddingInlineUnit = document.getElementById('padding-inline-unit');
+        const paddingBlockUnit = document.getElementById('padding-block-unit');
+        const paddingInlineValue = document.getElementById('padding-inline-value');
+        const paddingBlockValue = document.getElementById('padding-block-value');
+        const paddingInlineExample = document.querySelector('.padding-inline-example');
+        const paddingBlockExample = document.querySelector('.padding-block-example');
+
+        function updatePaddingInline() {
+            const value = paddingInlineNumber.value;
+            const unit = paddingInlineUnit.value;
+            const formattedValue = `${value}${unit}`;
+            paddingInlineExample.style.paddingInline = formattedValue;
+            paddingInlineValue.textContent = formattedValue;
+            paddingInlineExample.textContent = `padding-inline: ${formattedValue}`;
+        }
+
+        function updatePaddingBlock() {
+            const value = paddingBlockNumber.value;
+            const unit = paddingBlockUnit.value;
+            const formattedValue = `${value}${unit}`;
+            paddingBlockExample.style.paddingBlock = formattedValue;
+            paddingBlockValue.textContent = formattedValue;
+            paddingBlockExample.textContent = `padding-block: ${formattedValue}`;
+        }
+
+        if (paddingInlineControl && paddingBlockControl) {
+            // Padding Inline event listeners
+            paddingInlineControl.addEventListener('input', () => {
+                paddingInlineNumber.value = paddingInlineControl.value;
+                updatePaddingInline();
+            });
+
+            paddingInlineNumber.addEventListener('input', () => {
+                paddingInlineControl.value = Math.min(100, Math.max(0, paddingInlineNumber.value));
+                updatePaddingInline();
+            });
+
+            paddingInlineUnit.addEventListener('change', updatePaddingInline);
+
+            // Padding Block event listeners
+            paddingBlockControl.addEventListener('input', () => {
+                paddingBlockNumber.value = paddingBlockControl.value;
+                updatePaddingBlock();
+            });
+
+            paddingBlockNumber.addEventListener('input', () => {
+                paddingBlockControl.value = Math.min(100, Math.max(0, paddingBlockNumber.value));
+                updatePaddingBlock();
+            });
+
+            paddingBlockUnit.addEventListener('change', updatePaddingBlock);
+
+            // Initialize
+            updatePaddingInline();
+            updatePaddingBlock();
+        }
+
+        // Subgrid controls
+        const gridGapControl = document.getElementById('grid-gap-control');
+        const gridGapNumber = document.getElementById('grid-gap-number');
+        const gridGapUnit = document.getElementById('grid-gap-unit');
+        const gridColumnsControl = document.getElementById('grid-columns-control');
+        const gridGapValue = document.getElementById('grid-gap-value');
+        const gridColumnsValue = document.getElementById('grid-columns-value');
+        const parentGrid = document.querySelector('.parent-grid');
+        
+        function updateGridGap() {
+            const value = gridGapNumber.value;
+            const unit = gridGapUnit.value;
+            const formattedValue = `${value}${unit}`;
+            parentGrid.style.gap = formattedValue;
+            gridGapValue.textContent = formattedValue;
+        }
+        
+        if (gridGapControl && gridColumnsControl) {
+            gridGapControl.addEventListener('input', () => {
+                gridGapNumber.value = gridGapControl.value;
+                updateGridGap();
+            });
+
+            gridGapNumber.addEventListener('input', () => {
+                gridGapControl.value = Math.min(50, Math.max(0, gridGapNumber.value));
+                updateGridGap();
+            });
+
+            gridGapUnit.addEventListener('change', updateGridGap);
+
+            gridColumnsControl.addEventListener('input', () => {
+                const value = gridColumnsControl.value;
+                parentGrid.style.gridTemplateColumns = `repeat(${value}, 1fr)`;
+                gridColumnsValue.textContent = value;
+                
+                // Update subgrid items
+                const subgridParent = document.querySelector('.subgrid-parent');
+                if (subgridParent) {
+                    subgridParent.style.gridColumn = `span ${value}`;
+                }
+            });
+            
+            // Initialize
+            updateGridGap();
+        }
+
+        // :has() selector controls
+        const hasBackgroundControl = document.getElementById('has-background-control');
+        const hasTextControl = document.getElementById('has-text-control');
+        const hasParent = document.querySelector('.has-parent');
+        const toggleCheckbox = document.getElementById('toggle-checkbox');
+        
+        if (hasBackgroundControl && hasTextControl) {
+            function updateHasStyles() {
+                document.documentElement.style.setProperty('--has-active-bg', hasBackgroundControl.value);
+                document.documentElement.style.setProperty('--has-active-text', hasTextControl.value);
+            }
+            
+            hasBackgroundControl.addEventListener('input', updateHasStyles);
+            hasTextControl.addEventListener('input', updateHasStyles);
+            
+            // Initialize
+            updateHasStyles();
+            
+            // Add click event to help users understand the demo
+            if (toggleCheckbox) {
+                toggleCheckbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        console.log(':has() selector activated! The parent element is now styled using .has-parent:has(input:checked)');
+                    } else {
+                        console.log(':has() selector deactivated! The parent element is back to its default style');
+                    }
+                });
+            }
+        }
+
+        // Scroll snap controls
+        const snapTypeControl = document.getElementById('snap-type-control');
+        const snapAlignControl = document.getElementById('snap-align-control');
+        const scrollContainer = document.querySelector('.scroll-container');
+        const snapItems = document.querySelectorAll('.snap-item');
+        
+        if (snapTypeControl && snapAlignControl) {
+            snapTypeControl.addEventListener('change', () => {
+                const value = snapTypeControl.value;
+                scrollContainer.style.scrollSnapType = `x ${value}`;
+            });
+
+            snapAlignControl.addEventListener('change', () => {
+                const value = snapAlignControl.value;
+                snapItems.forEach(item => {
+                    item.style.scrollSnapAlign = value;
+                });
+            });
+        }
+
+        // Scope demo controls
+        const lightThemeBgControl = document.getElementById('light-theme-bg');
+        const darkThemeBgControl = document.getElementById('dark-theme-bg');
+        const lightTheme = document.querySelector('.light-theme');
+        const darkTheme = document.querySelector('.dark-theme');
+        
+        if (lightThemeBgControl && darkThemeBgControl) {
+            lightThemeBgControl.addEventListener('input', () => {
+                lightTheme.style.backgroundColor = lightThemeBgControl.value;
+            });
+
+            darkThemeBgControl.addEventListener('input', () => {
+                darkTheme.style.backgroundColor = darkThemeBgControl.value;
+            });
+        }
+
+        // Accent color demo
+        const accentPicker = document.getElementById('accent-picker');
+        const accentInputs = document.querySelectorAll('.accent-examples input, .accent-examples progress');
+        
+        if (accentPicker) {
+            accentPicker.addEventListener('input', () => {
+                const color = accentPicker.value;
+                accentInputs.forEach(input => {
+                    input.style.accentColor = color;
+                });
+            });
+        }
+
+        // Color mix demo
+        const color1Input = document.getElementById('color1');
+        const color2Input = document.getElementById('color2');
+        const mixPercent = document.getElementById('mix-percent');
+        const colorSpace = document.getElementById('color-space');
+        const colorResult = document.getElementById('color-result');
+        const mixCode = document.getElementById('mix-code');
+        const color1Text = document.getElementById('color1-text');
+        const color2Text = document.getElementById('color2-text');
+        const percentText = document.getElementById('percent-text');
+        
+        function updateColorMix() {
+            if (!color1Input || !color2Input) return;
+            
+            const color1 = color1Input.value;
+            const color2 = color2Input.value;
+            const percent = mixPercent.value;
+            const space = colorSpace.value;
+            
+            color1Text.textContent = color1;
+            color2Text.textContent = color2;
+            percentText.textContent = `${percent}%`;
+            
+            const mixValue = `color-mix(in ${space}, ${color1} ${percent}%, ${color2})`;
+            colorResult.style.backgroundColor = mixValue;
+            mixCode.textContent = mixValue;
+        }
+        
+        if (color1Input && color2Input && mixPercent && colorSpace) {
+            color1Input.addEventListener('input', updateColorMix);
+            color2Input.addEventListener('input', updateColorMix);
+            mixPercent.addEventListener('input', updateColorMix);
+            colorSpace.addEventListener('change', updateColorMix);
+            updateColorMix();
+        }
+
+        // :nth-child demo
+        const nthPatternControl = document.getElementById('nth-pattern-control');
+        const nthColorControl = document.getElementById('nth-color-control');
+        const nthPatternDisplay = document.getElementById('nth-pattern-display');
+        
+        function updateNthPattern() {
+            if (!nthPatternControl || !nthColorControl) return;
+            
+            const pattern = nthPatternControl.value;
+            const color = nthColorControl.value;
+            const nthPattern = `:nth-child(${pattern} of p)`;
+            
+            nthPatternDisplay.textContent = nthPattern;
+            
+            // Apply the style dynamically
+            const styleEl = document.getElementById('nth-style') || document.createElement('style');
+            styleEl.id = 'nth-style';
+            styleEl.textContent = `.nth-container p:nth-child(${pattern} of p) { color: ${color}; font-weight: bold; }`;
+            
+            if (!document.getElementById('nth-style')) {
+                document.head.appendChild(styleEl);
+            }
+        }
+        
+        if (nthPatternControl && nthColorControl) {
+            nthPatternControl.addEventListener('change', updateNthPattern);
+            nthColorControl.addEventListener('input', updateNthPattern);
+            updateNthPattern();
+        }
+
+        // Media Queries Level 5 demo
+        document.addEventListener('DOMContentLoaded', function() {
+            // Toggle simulator panel
+            const toggleSimulator = document.getElementById('toggle-simulator');
+            const mediaSimulator = document.getElementById('media-simulator');
+            
+            if (toggleSimulator) {
+                toggleSimulator.addEventListener('click', function() {
+                    mediaSimulator.classList.toggle('active');
+                    this.textContent = mediaSimulator.classList.contains('active') 
+                        ? 'Hide feature simulator' 
+                        : 'Toggle feature simulator';
+                });
+            }
+            
+            // Interactive click counter for scripting detection demo
+            const interactiveBtn = document.getElementById('interactive-btn');
+            const clickCounter = document.getElementById('click-counter');
+            let clicks = 0;
+            
+            if (interactiveBtn) {
+                interactiveBtn.addEventListener('click', function() {
+                    clicks++;
+                    clickCounter.textContent = clicks + (clicks === 1 ? ' click' : ' clicks');
+                });
+            }
+            
+            // Animation controls
+            const playAnimation = document.getElementById('play-animation');
+            const pauseAnimation = document.getElementById('pause-animation');
+            const carousel = document.querySelector('.carousel');
+            
+            if (playAnimation && pauseAnimation && carousel) {
+                playAnimation.addEventListener('click', function() {
+                    document.documentElement.style.setProperty('--carousel-animation-running', 'running');
+                    carousel.style.animationPlayState = 'running';
+                    document.querySelectorAll('.carousel-item').forEach(item => {
+                        item.style.animationPlayState = 'running';
+                    });
+                });
+                
+                pauseAnimation.addEventListener('click', function() {
+                    document.documentElement.style.setProperty('--carousel-animation-running', 'paused');
+                    carousel.style.animationPlayState = 'paused';
+                    document.querySelectorAll('.carousel-item').forEach(item => {
+                        item.style.animationPlayState = 'paused';
+                    });
+                });
+            }
+            
+            // Color scheme detection
+            function updateColorScheme() {
+                const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                document.getElementById('scheme-status').textContent = isDarkMode ? 'Dark' : 'Light';
+            }
+            
+            // Motion preference detection
+            function updateMotionPreference() {
+                const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                document.getElementById('motion-status').textContent = prefersReducedMotion ? 'Reduced Motion' : 'Animations Enabled';
+            }
+            
+            // Contrast preference detection
+            function updateContrastPreference() {
+                const prefersMoreContrast = window.matchMedia('(prefers-contrast: more)').matches;
+                const prefersLessContrast = window.matchMedia('(prefers-contrast: less)').matches;
+                let contrastStatus = 'Normal Contrast';
+                
+                if (prefersMoreContrast) contrastStatus = 'High Contrast';
+                if (prefersLessContrast) contrastStatus = 'Low Contrast';
+                
+                document.getElementById('contrast-status').textContent = contrastStatus;
+            }
+            
+            // Dynamic range detection
+            function updateDynamicRange() {
+                const hasHighDynamicRange = window.matchMedia('(dynamic-range: high)').matches;
+                document.getElementById('dynamic-range-status').textContent = hasHighDynamicRange ? 'High (HDR)' : 'Standard';
+            }
+            
+            // Viewport width for range syntax example
+            function updateViewportWidth() {
+                const width = window.innerWidth;
+                document.getElementById('width-status').textContent = width + 'px';
+                
+                // Update marker position on the ruler
+                const rulerWidth = document.querySelector('.range-ruler')?.offsetWidth || 0;
+                const widthMarker = document.getElementById('width-marker');
+                
+                if (widthMarker) {
+                    // Scale the position based on a max of 1600px
+                    const position = Math.min(width / 1600 * 100, 100);
+                    widthMarker.style.left = position + '%';
+                }
+                
+                // Update status indicators for different width ranges
+                const smallStatus = document.getElementById('small-status');
+                const mediumStatus = document.getElementById('medium-status');
+                const largeStatus = document.getElementById('large-status');
+                
+                if (smallStatus && mediumStatus && largeStatus) {
+                    if (width < 400) {
+                        smallStatus.classList.add('active');
+                        mediumStatus.classList.remove('active');
+                        largeStatus.classList.remove('active');
+                    } else if (width >= 400 && width <= 800) {
+                        smallStatus.classList.remove('active');
+                        mediumStatus.classList.add('active');
+                        largeStatus.classList.remove('active');
+                    } else {
+                        smallStatus.classList.remove('active');
+                        mediumStatus.classList.remove('active');
+                        largeStatus.classList.add('active');
+                    }
+                }
+            }
+            
+            // Scripting detection (always enabled if this runs)
+            function updateScriptingStatus() {
+                document.getElementById('script-status').textContent = 'Enabled';
+            }
+            
+            // Display mode detection
+            function updateDisplayMode() {
+                let displayMode = 'browser';
+                
+                if (window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches) {
+                    displayMode = 'standalone';
+                } else if (window.matchMedia('(display-mode: fullscreen)').matches) {
+                    displayMode = 'fullscreen';
+                } else if (window.matchMedia('(display-mode: minimal-ui)').matches) {
+                    displayMode = 'minimal-ui';
+                }
+                
+                document.getElementById('display-status').textContent = displayMode;
+            }
+            
+            // Media feature simulation
+            const simColorScheme = document.getElementById('sim-color-scheme');
+            const simReducedMotion = document.getElementById('sim-reduced-motion');
+            const simContrast = document.getElementById('sim-contrast');
+            
+            // Custom simulation using CSS variables
+            function applySimulations() {
+                const root = document.documentElement;
+                
+                // Color scheme simulation
+                if (simColorScheme) {
+                    if (simColorScheme.value === 'light') {
+                        root.classList.add('sim-light');
+                        root.classList.remove('sim-dark');
+                        document.getElementById('scheme-status').textContent = 'Light (Simulated)';
+                    } else if (simColorScheme.value === 'dark') {
+                        root.classList.add('sim-dark');
+                        root.classList.remove('sim-light');
+                        document.getElementById('scheme-status').textContent = 'Dark (Simulated)';
+                    } else {
+                        root.classList.remove('sim-light', 'sim-dark');
+                        updateColorScheme();
+                    }
+                }
+                
+                // Reduced motion simulation
+                if (simReducedMotion) {
+                    if (simReducedMotion.value === 'reduce') {
+                        root.classList.add('sim-reduced-motion');
+                        document.getElementById('motion-status').textContent = 'Reduced Motion (Simulated)';
+                    } else if (simReducedMotion.value === 'no-preference') {
+                        root.classList.add('sim-motion-allowed');
+                        root.classList.remove('sim-reduced-motion');
+                        document.getElementById('motion-status').textContent = 'Animations Enabled (Simulated)';
+                    } else {
+                        root.classList.remove('sim-reduced-motion', 'sim-motion-allowed');
+                        updateMotionPreference();
+                    }
+                }
+                
+                // Contrast simulation
+                if (simContrast) {
+                    if (simContrast.value === 'more') {
+                        root.classList.add('sim-high-contrast');
+                        root.classList.remove('sim-low-contrast');
+                        document.getElementById('contrast-status').textContent = 'High Contrast (Simulated)';
+                    } else if (simContrast.value === 'less') {
+                        root.classList.add('sim-low-contrast');
+                        root.classList.remove('sim-high-contrast');
+                        document.getElementById('contrast-status').textContent = 'Low Contrast (Simulated)';
+                    } else {
+                        root.classList.remove('sim-high-contrast', 'sim-low-contrast');
+                        updateContrastPreference();
+                    }
+                }
+            }
+            
+            // Add event listeners for simulator controls
+            if (simColorScheme) simColorScheme.addEventListener('change', applySimulations);
+            if (simReducedMotion) simReducedMotion.addEventListener('change', applySimulations);
+            if (simContrast) simContrast.addEventListener('change', applySimulations);
+            
+            // Run all updates
+            updateColorScheme();
+            updateMotionPreference();
+            updateContrastPreference();
+            updateDynamicRange();
+            updateViewportWidth();
+            updateScriptingStatus();
+            updateDisplayMode();
+            
+            // Add listeners for changes
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateColorScheme);
+            window.matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', updateMotionPreference);
+            window.matchMedia('(prefers-contrast: more)').addEventListener('change', updateContrastPreference);
+            window.matchMedia('(prefers-contrast: less)').addEventListener('change', updateContrastPreference);
+            window.matchMedia('(dynamic-range: high)').addEventListener('change', updateDynamicRange);
+            window.addEventListener('resize', updateViewportWidth);
+            window.matchMedia('(display-mode: standalone)').addEventListener('change', updateDisplayMode);
+            window.matchMedia('(display-mode: fullscreen)').addEventListener('change', updateDisplayMode);
+            window.matchMedia('(display-mode: minimal-ui)').addEventListener('change', updateDisplayMode);
+        });
+    </script>
+</body>
+</html> 

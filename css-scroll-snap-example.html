@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Scroll Snap Examples</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            padding: 20px;
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .container {
+            margin: 2rem 0;
+        }
+
+        .code-container {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        .property-explanation {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #3a86ff;
+        }
+
+        /* Example 1: Vertical List */
+        .vertical-list {
+            height: 400px;
+            width: 100%;
+            overflow-y: scroll;
+            border: 1px solid #ddd;
+            
+            /* Scroll Snap Properties */
+            scroll-snap-type: y mandatory;
+        }
+
+        .vertical-list-item {
+            height: 200px;
+            scroll-snap-align: start;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: white;
+        }
+
+        .vertical-list-item:nth-child(1) { background-color: #ffadad; }
+        .vertical-list-item:nth-child(2) { background-color: #ffd6a5; }
+        .vertical-list-item:nth-child(3) { background-color: #fdffb6; }
+        .vertical-list-item:nth-child(4) { background-color: #caffbf; }
+        .vertical-list-item:nth-child(5) { background-color: #9bf6ff; }
+
+        /* Example 2: Horizontal Slider with scroll-padding */
+        .horizontal-slider {
+            width: 100%;
+            height: 300px;
+            overflow-x: scroll;
+            display: flex;
+            border: 1px solid #ddd;
+            
+            /* Scroll Snap Properties */
+            scroll-snap-type: x mandatory;
+            scroll-padding: 20%; /* Add padding to prevent snapping directly to edge */
+        }
+
+        .horizontal-slider-item {
+            min-width: 70%;
+            height: 100%;
+            scroll-snap-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            margin: 0 10px;
+            flex-shrink: 0;
+        }
+
+        .horizontal-slider-item:nth-child(1) { background-color: #ffadad; }
+        .horizontal-slider-item:nth-child(2) { background-color: #ffd6a5; }
+        .horizontal-slider-item:nth-child(3) { background-color: #fdffb6; }
+        .horizontal-slider-item:nth-child(4) { background-color: #caffbf; }
+        .horizontal-slider-item:nth-child(5) { background-color: #9bf6ff; }
+
+        /* Example 3: Horizontal Slider with Proximity */
+        .horizontal-proximity {
+            width: 100%;
+            height: 300px;
+            overflow-x: scroll;
+            display: flex;
+            border: 1px solid #ddd;
+            
+            /* Scroll Snap Properties with proximity */
+            scroll-snap-type: x proximity;
+            margin-bottom: 2rem;
+        }
+
+        .horizontal-proximity-item {
+            min-width: 70%;
+            height: 100%;
+            scroll-snap-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            margin: 0 10px;
+            flex-shrink: 0;
+        }
+
+        .horizontal-proximity-item:nth-child(1) { background-color: #99e1ff; }
+        .horizontal-proximity-item:nth-child(2) { background-color: #c6acf6; }
+        .horizontal-proximity-item:nth-child(3) { background-color: #ffcad4; }
+        .horizontal-proximity-item:nth-child(4) { background-color: #b8f7d4; }
+        .horizontal-proximity-item:nth-child(5) { background-color: #fbf7d5; }
+
+        /* Example 4: Vertical Full Screen */
+        .vertical-fullscreen {
+            height: 100vh;
+            overflow-y: scroll;
+            border: 1px solid #ddd;
+            
+            /* Scroll Snap Properties */
+            scroll-snap-type: y mandatory;
+        }
+
+        .vertical-fullscreen-section {
+            height: 100vh;
+            scroll-snap-align: start;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+            color: white;
+        }
+
+        .vertical-fullscreen-section:nth-child(1) { background-color: #3a86ff; }
+        .vertical-fullscreen-section:nth-child(2) { background-color: #8338ec; }
+        .vertical-fullscreen-section:nth-child(3) { background-color: #ff006e; }
+
+        /* Example 5: Horizontal Full Screen */
+        .horizontal-fullscreen {
+            width: 100%;
+            height: 100vh;
+            overflow-x: scroll;
+            display: flex;
+            border: 1px solid #ddd;
+            
+            /* Scroll Snap Properties */
+            scroll-snap-type: x mandatory;
+        }
+
+        .horizontal-fullscreen-section {
+            min-width: 100%;
+            height: 100vh;
+            scroll-snap-align: start;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .horizontal-fullscreen-section:nth-child(1) { background-color: #3a86ff; }
+        .horizontal-fullscreen-section:nth-child(2) { background-color: #8338ec; }
+        .horizontal-fullscreen-section:nth-child(3) { background-color: #ff006e; }
+
+        /* Comparison: Different scroll-snap-align values */
+        .comparison-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .scroll-container {
+            width: 31%;
+            height: 300px;
+            overflow-y: scroll;
+            border: 1px solid #ddd;
+            scroll-snap-type: y mandatory;
+        }
+
+        .scroll-item {
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            color: white;
+        }
+
+        .align-start .scroll-item {
+            scroll-snap-align: start;
+        }
+
+        .align-center .scroll-item {
+            scroll-snap-align: center;
+        }
+
+        .align-end .scroll-item {
+            scroll-snap-align: end;
+        }
+
+        .scroll-item:nth-child(1) { background-color: #ffadad; }
+        .scroll-item:nth-child(2) { background-color: #ffd6a5; }
+        .scroll-item:nth-child(3) { background-color: #fdffb6; }
+        .scroll-item:nth-child(4) { background-color: #caffbf; }
+    </style>
+</head>
+<body>
+    <h1>CSS Scroll Snap Examples</h1>
+    
+    <section>
+        <h2>Example 1: Vertical List</h2>
+        <div class="property-explanation">
+            <p>Key properties used:</p>
+            <ul>
+                <li><code>scroll-snap-type: y mandatory</code> - Creates vertical snap points that are required stopping positions</li>
+                <li><code>scroll-snap-align: start</code> - Elements snap to the top of the container</li>
+            </ul>
+        </div>
+        
+        <div class="vertical-list container">
+            <div class="vertical-list-item">List Item 1</div>
+            <div class="vertical-list-item">List Item 2</div>
+            <div class="vertical-list-item">List Item 3</div>
+            <div class="vertical-list-item">List Item 4</div>
+            <div class="vertical-list-item">List Item 5</div>
+        </div>
+        
+        <div class="code-container">
+<pre>
+.vertical-list {
+    height: 400px;
+    width: 100%;
+    overflow-y: scroll;
+    
+    /* Scroll Snap Properties */
+    scroll-snap-type: y mandatory;
+}
+
+.vertical-list-item {
+    height: 200px;
+    scroll-snap-align: start;
+}
+</pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>Example 2: Horizontal Slider with scroll-padding</h2>
+        <div class="property-explanation">
+            <p>Key properties used:</p>
+            <ul>
+                <li><code>scroll-snap-type: x mandatory</code> - Creates horizontal snap points that are required stopping positions</li>
+                <li><code>scroll-snap-align: center</code> - Elements snap to the center of the container</li>
+                <li><code>scroll-padding: 20%</code> - Adds padding to the snap container, creating an offset for snap points</li>
+            </ul>
+        </div>
+        
+        <div class="horizontal-slider container">
+            <div class="horizontal-slider-item">Slide 1</div>
+            <div class="horizontal-slider-item">Slide 2</div>
+            <div class="horizontal-slider-item">Slide 3</div>
+            <div class="horizontal-slider-item">Slide 4</div>
+            <div class="horizontal-slider-item">Slide 5</div>
+        </div>
+        
+        <div class="code-container">
+<pre>
+.horizontal-slider {
+    width: 100%;
+    height: 300px;
+    overflow-x: scroll;
+    display: flex;
+    
+    /* Scroll Snap Properties */
+    scroll-snap-type: x mandatory;
+    scroll-padding: 20%; /* Creates offset for snap points */
+}
+
+.horizontal-slider-item {
+    min-width: 70%;
+    height: 100%;
+    scroll-snap-align: center;
+}
+</pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>Mandatory vs. Proximity Comparison</h2>
+        <div class="property-explanation">
+            <p>Compare the behavior difference:</p>
+            <ul>
+                <li><code>scroll-snap-type: x mandatory</code> (above example) - Always snaps to points</li>
+                <li><code>scroll-snap-type: x proximity</code> (below example) - Only snaps when you're close to a snap point</li>
+            </ul>
+            <p>Try scrolling between items and stop in the middle - the proximity version doesn't force snapping unless you're close to a snap point.</p>
+        </div>
+        
+        <div class="horizontal-proximity container">
+            <div class="horizontal-proximity-item">Proximity 1</div>
+            <div class="horizontal-proximity-item">Proximity 2</div>
+            <div class="horizontal-proximity-item">Proximity 3</div>
+            <div class="horizontal-proximity-item">Proximity 4</div>
+            <div class="horizontal-proximity-item">Proximity 5</div>
+        </div>
+        
+        <div class="code-container">
+<pre>
+.horizontal-proximity {
+    width: 100%;
+    height: 300px;
+    overflow-x: scroll;
+    display: flex;
+    
+    /* Scroll Snap Properties with proximity */
+    scroll-snap-type: x proximity;
+}
+</pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>scroll-snap-align Comparison</h2>
+        <div class="property-explanation">
+            <p>Compare different values for <code>scroll-snap-align</code>:</p>
+            <ul>
+                <li><code>scroll-snap-align: start</code> - Snap to the start of each element</li>
+                <li><code>scroll-snap-align: center</code> - Snap to the center of each element</li>
+                <li><code>scroll-snap-align: end</code> - Snap to the end of each element</li>
+            </ul>
+        </div>
+        
+        <div class="comparison-container">
+            <div class="scroll-container align-start">
+                <h3>align: start</h3>
+                <div class="scroll-item">Item 1</div>
+                <div class="scroll-item">Item 2</div>
+                <div class="scroll-item">Item 3</div>
+                <div class="scroll-item">Item 4</div>
+            </div>
+            
+            <div class="scroll-container align-center">
+                <h3>align: center</h3>
+                <div class="scroll-item">Item 1</div>
+                <div class="scroll-item">Item 2</div>
+                <div class="scroll-item">Item 3</div>
+                <div class="scroll-item">Item 4</div>
+            </div>
+            
+            <div class="scroll-container align-end">
+                <h3>align: end</h3>
+                <div class="scroll-item">Item 1</div>
+                <div class="scroll-item">Item 2</div>
+                <div class="scroll-item">Item 3</div>
+                <div class="scroll-item">Item 4</div>
+            </div>
+        </div>
+    </section>
+</body>
+</html> 

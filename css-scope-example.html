@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS @scope Examples</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        section {
+            margin-bottom: 4rem;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .code-container {
+            background-color: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        .property-explanation {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #3a86ff;
+        }
+
+        .demo-container {
+            margin: 2rem 0;
+            padding: 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+        }
+
+        /* Example styles that will be overridden by @scope */
+        p {
+            color: #333;
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+
+        /* Browser support warning */
+        .browser-support {
+            background-color: #ffe9e9;
+            border-left: 4px solid #ff6b6b;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        /* Polyfill example */
+        .polyfill-example {
+            background-color: #f0fdf0;
+            border-left: 4px solid #68d391;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        /* @scope styles - Only works in browsers that support it */
+        @scope (.basic-example) {
+            p {
+                color: #3a86ff;
+                background-color: #e6f0ff;
+                border-left: 4px solid #3a86ff;
+            }
+        }
+
+        @scope (.donut-scope) to (.donut-hole) {
+            p {
+                color: #7209b7;
+                background-color: #f3e5f9;
+                border-left: 4px solid #7209b7;
+            }
+        }
+
+        @scope (.multi-slot) to (.slot-1, .slot-2) {
+            p {
+                color: #d00000;
+                background-color: #ffe5e5;
+                border-left: 4px solid #d00000;
+            }
+        }
+
+        @scope (.proximity-outer) {
+            p {
+                color: #2b9348;
+                background-color: #e6f5e9;
+                border-left: 4px solid #2b9348;
+            }
+        }
+
+        @scope (.proximity-middle) {
+            p {
+                color: #fb8500;
+                background-color: #fff3e0;
+                border-left: 4px solid #fb8500;
+            }
+        }
+
+        @scope (.proximity-inner) {
+            p {
+                color: #ef476f;
+                background-color: #fde8ee;
+                border-left: 4px solid #ef476f;
+            }
+        }
+
+        /* Fallback styles for browsers that don't support @scope */
+        .no-scope-support .basic-example p {
+            color: #3a86ff;
+            background-color: #e6f0ff;
+            border-left: 4px solid #3a86ff;
+        }
+
+        .no-scope-support .donut-scope p:not(.donut-hole p) {
+            color: #7209b7;
+            background-color: #f3e5f9;
+            border-left: 4px solid #7209b7;
+        }
+
+        .no-scope-support .multi-slot p:not(.slot-1 p):not(.slot-2 p) {
+            color: #d00000;
+            background-color: #ffe5e5;
+            border-left: 4px solid #d00000;
+        }
+
+        .no-scope-support .proximity-inner p {
+            color: #ef476f;
+            background-color: #fde8ee;
+            border-left: 4px solid #ef476f;
+        }
+
+        .no-scope-support .proximity-middle p {
+            color: #fb8500;
+            background-color: #fff3e0;
+            border-left: 4px solid #fb8500;
+        }
+
+        .no-scope-support .proximity-outer p {
+            color: #2b9348;
+            background-color: #e6f5e9;
+            border-left: 4px solid #2b9348;
+        }
+
+        /* Styles for the card example */
+        .card-example p {
+            width: max-content;
+            background-color: aquamarine;
+        }
+
+        .card-example .card {
+            box-shadow: 0 10px 10px 0 rgba(0,0,0,0.2);
+            border-style: groove;
+            transition: 0.3s;
+            border-radius: 10px;
+            padding: 0px 16px;
+            margin: 20px 0;
+        }
+
+        @scope (.card) {
+            p {
+                background-color: red;
+            }
+        }
+
+        /* Fallback for browsers that don't support @scope */
+        .no-scope-support .card-example .card p {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS @scope Examples</h1>
+
+    <div class="browser-support">
+        <h3>⚠️ Browser Support Warning</h3>
+        <p>The <code>@scope</code> at-rule is experimental and not widely supported yet. If you don't see the styling differences in the examples below, your browser doesn't support <code>@scope</code>.</p>
+        <p>As of early 2024, Chrome and Edge have support, while Firefox and Safari are still implementing it.</p>
+        <p>Each example has fallback styling using traditional CSS for browsers without <code>@scope</code> support.</p>
+    </div>
+
+    <section>
+        <h2>Example 1: Basic Scoping</h2>
+        <div class="property-explanation">
+            <p>Basic <code>@scope</code> limits styles to elements within a specific container:</p>
+            <ul>
+                <li><code>@scope (.basic-example) { p { /* styles */ } }</code> - Only applies to paragraphs inside <code>.basic-example</code></li>
+            </ul>
+        </div>
+        
+        <div class="demo-container">
+            <div class="basic-example">
+                <h3>Inside Basic Scope</h3>
+                <p>This paragraph is inside the scope and should be styled with blue text and background.</p>
+                <p>This is another paragraph inside the scope.</p>
+            </div>
+            
+            <div>
+                <h3>Outside Basic Scope</h3>
+                <p>This paragraph is outside the scope and should have default styling.</p>
+            </div>
+        </div>
+        
+        <div class="code-container">
+<pre>
+@scope (.basic-example) {
+    p {
+        color: #3a86ff;
+        background-color: #e6f0ff;
+        border-left: 4px solid #3a86ff;
+    }
+}
+</pre>
+        </div>
+    </section>
+
+    <section>
+        <h2>Example 2: Card Component</h2>
+        <div class="property-explanation">
+            <p>Using <code>@scope</code> to style elements within a card component:</p>
+            <ul>
+                <li>Global styling sets all paragraphs to have aquamarine background</li>
+                <li><code>@scope (.card)</code> overrides only the paragraphs inside cards to have red background</li>
+            </ul>
+        </div>
+        
+        <div class="demo-container card-example">
+            <p>I'm just a piece of text.</p>
+            <div class="card">
+                <p>I'm the text that lives on a card.</p>
+            </div>
+        </div>
+        
+        <div class="code-container">
+<pre>
+&lt;p>I'm just a piece of text.&lt;/p>
+&lt;div class="card">
+  &lt;p>I'm the text that lives on a card.&lt;/p>
+&lt;/div>
+
+@scope (.card) {
+  p {
+    background-color: red;
+  }
+}
+p {
+  width: max-content;
+  background-color: aquamarine;
+}
+.card {
+  box-shadow: 0 10px 10px 0 rgba(0,0,0,0.2);
+  border-style: groove;
+  transition: 0.3s;
+  border-radius: 10px;
+  padding: 0px 16px;
+}
+</pre>
+        </div>
+    </section>
+
+    <script>
+        // Script to detect @scope support and add fallback class if not supported
+        function isScopeSupported() {
+            try {
+                document.querySelector('@scope');
+                return true;
+            } catch (e) {
+                return false;
+            }
+        }
+
+        if (!isScopeSupported()) {
+            document.body.classList.add('no-scope-support');
+            document.querySelector('.browser-support').innerHTML += '<p><strong>⚠️ Your browser does not support @scope. Fallback styles are being used.</strong></p>';
+        } else {
+            document.querySelector('.browser-support').innerHTML += '<p><strong>✅ Your browser supports @scope!</strong></p>';
+        }
+    </script>
+</body>
+</html> 
